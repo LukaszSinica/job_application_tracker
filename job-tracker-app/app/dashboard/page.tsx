@@ -2,6 +2,7 @@ import Logout from "@/components/logout";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function Page() {
+  
   const supabase = await createClient()
 
   const {

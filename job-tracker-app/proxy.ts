@@ -9,7 +9,7 @@ export async function proxy(req: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
   
-  if (!user && req.nextUrl.pathname.startsWith("/")) {
+  if (!user && req.nextUrl.pathname.startsWith("/dashboard")) {
     const redirectUrl = req.nextUrl.clone()
     redirectUrl.pathname = "/login"
     return NextResponse.redirect(redirectUrl)
