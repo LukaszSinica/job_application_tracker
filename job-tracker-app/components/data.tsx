@@ -1,21 +1,45 @@
-import { getApplications } from '@/utils/getApplications'
+"use client"
 
-export default async function Data() {
+import React, { useEffect, useState } from 'react';
+import { Job } from '../types/Job';
+import { getApplications } from '@/utils/getApplications';
 
-    const data = await getApplications()
+
+
+const JobList: React.FC = () => {
+    const [jobs, setJobs] = useState<Job[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const getJobs = async () => {
+            const jobData = await getApplications();
+            setJobs(jobData || []);
+            setLoading(false);
+        };
+
+        getJobs();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
-        <main className="p-8">
-          <h1 className="text-2xl font-bold mb-4">Twoje aplikacje</h1>
-          <ul className="space-y-3">
-            {data?.map(app => (
-              <li key={app.id} className="border p-4 rounded-lg">
-                <h2 className="font-semibold">{app.company}</h2>
-                <p>{app.position}</p>
-                <p className="text-sm text-gray-500">{app.status}</p>
-              </li>
-            ))}
-          </ul>
-        </main>
-      )
-}
+        <div>
+            <h2>Job Applications</h2>
+            <ul>
+                {jobs.map(job => (
+                    <li key={job.id}>
+                        <h3>{job.position} at {job.company}</h3>
+                        <p>Status: {job.status}</p>
+                        <p>Applied on: {job.date_applied}</p>
+                        <p>Last Update: {job.last_update}</p>
+                        <p>Notes: {job.notes}</p>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default JobList;

@@ -1,4 +1,5 @@
-import { createClient } from '@/utils/supabase/server';
+"use client"
+import { createClient } from '@/utils/supabase/client';
 
 export async function getApplications() {
     

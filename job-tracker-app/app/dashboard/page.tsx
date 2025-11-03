@@ -1,3 +1,5 @@
+import AddJobForm from "@/components/AddJobForm";
+import Data from "@/components/data";
 import Logout from "@/components/logout";
 import { createClient } from "@/utils/supabase/server";
 
@@ -33,11 +35,8 @@ export default async function Page() {
       ) : (
         <>
           <ul className="space-y-3">
-            {applications.map((app) => (
-              <li key={app.id} className="border p-3 rounded-lg">
-                <strong>{app.company}</strong> — {app.position}
-              </li>
-            ))}
+            <Data/>
+            <AddJobForm/>
           </ul>
           <Logout />
         </>
