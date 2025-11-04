@@ -5,7 +5,11 @@ import { createClient } from '@/utils/supabase/client';
 import { APPLICATION_STATUS, ApplicationStatus } from '@/utils/constants';
 import Drawer from './ui/Drawer';
 
-export default function AddJobForm() {
+interface AddJobFormProps {
+  refreshJobs: () => void;
+}
+
+export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
     const supabase = createClient();
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState<{
@@ -45,11 +49,10 @@ export default function AddJobForm() {
             status: APPLICATION_STATUS.SENT,
             notes: '',
         });
-        if (!error) {
-            setIsOpen(false); // Close drawer on success
-          }
+        
+        refreshJobs(); // Call refresh after successful insert
         } catch (error) {
-        console.error('Error adding job:', error);
+        console.error('Error:', error);
         }
     };
 
