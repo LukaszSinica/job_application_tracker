@@ -24,7 +24,7 @@ export default function AuthForm() {
   }
 
   return (
-    <form onSubmit={handleLogin} className="flex flex-col gap-3 max-w-sm mx-auto">
+    <form onSubmit={handleLogin} className="flex flex-col gap-3 max-w-sm mx-auto m-8">
       <h2 className="text-xl font-bold">Zaloguj się</h2>
       <input
         className="border p-2 rounded"

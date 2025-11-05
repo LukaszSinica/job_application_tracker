@@ -60,7 +60,7 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
         <>
         <button
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700"
+            className="fixed bottom-8 right-8 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:bg-primary/90"
         >
             + Add Job
         </button>
@@ -70,9 +70,9 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
             onClose={() => setIsOpen(false)}
             title="Add New Job Application"
         >
-        <form onSubmit={handleSubmit} className="space-y-4 bg-gray-800 p-6 rounded-lg shadow-xl">
+        <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-        <label htmlFor="company" className="block text-sm font-medium text-gray-200">
+        <label htmlFor="company" className="block text-sm font-medium">
             Company
             </label>
             <input
@@ -81,12 +81,12 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
             value={formData.company}
             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             required
-            className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 p-2 block w-full rounded-md border border-input bg-background text-foreground"
             />
         </div>
 
         <div>
-        <label htmlFor="position" className="block text-sm font-medium text-gray-200">
+        <label htmlFor="position" className="block text-sm font-medium">
             Position
             </label>
             <input
@@ -95,19 +95,19 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
             value={formData.position}
             onChange={(e) => setFormData({ ...formData, position: e.target.value })}
             required
-            className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 p-2 block w-full rounded-md border border-input bg-background text-foreground"
             />
         </div>
 
         <div>
-        <label htmlFor="status" className="block text-sm font-medium text-gray-200">
+        <label htmlFor="status" className="block text-sm font-medium">
                 Status
                 </label>
                 <select
                 id="status"
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value as ApplicationStatus })}
-                className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 p-2 block w-full rounded-md border border-input bg-background text-foreground focus:border-blue-500 focus:ring-blue-500"
                 >
                 {Object.values(APPLICATION_STATUS).map((status) => (
                     <option key={status} value={status}>
@@ -118,7 +118,7 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
       </div>
 
         <div>
-        <label htmlFor="notes" className="block text-sm font-medium text-gray-200">
+        <label htmlFor="notes" className="block text-sm font-medium ">
             Notes
             </label>
             <textarea
@@ -126,7 +126,7 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
             value={formData.notes}
             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
             rows={3}
-            className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-input bg-background text-foreground text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
             />
         </div>
 

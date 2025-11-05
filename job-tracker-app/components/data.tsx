@@ -26,9 +26,9 @@ export default function JobList({ refreshTrigger }: JobListProps) {
         getJobs();
     }, [refreshTrigger]);
 
-    const handleStatusChange = async (jobId: string, newStatus: string) => {
+    const handleStatusChange = async (updatedJob: Job) => {
             setJobs(jobs.map(job => 
-              job.id === jobId ? { ...job, status: newStatus as ApplicationStatus } : job
+              job.id === updatedJob.id ? { ...job, status: updatedJob.status } : job
             ));
           };
 
@@ -37,23 +37,19 @@ export default function JobList({ refreshTrigger }: JobListProps) {
     };
       
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="text-muted-foreground">Loading...</div>;
     }
 
     return (
-        <div>
-            <h2>Job Applications</h2>
-            <ul className="flex gap-4">
-                {jobs.map(job => (
-                    <JobCard 
-                        key={job.id} 
-                        job={job} 
-                        onUpdate={(updatedJob) => handleStatusChange(job?.id || '', updatedJob.status)} 
-                        onDelete={(jobId) => handleDelete(jobId)} 
-                    />
-                ))}
-            </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {jobs.map((job) => (
+                <JobCard 
+                    key={job.id} 
+                    job={job} 
+                    onUpdate={handleStatusChange} 
+                    onDelete={handleDelete} 
+                />
+            ))}
         </div>
     );
 };
-
