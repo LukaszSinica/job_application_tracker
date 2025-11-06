@@ -1,6 +1,13 @@
 "use client"
-import { APPLICATION_STATUS, ApplicationStatus } from '@/utils/constants';
 import { createClient } from '@/utils/supabase/client';
+import { ApplicationStatus, APPLICATION_STATUS } from '@/utils/constants';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface StatusDropdownProps {
   currentStatus: ApplicationStatus;
@@ -13,10 +20,9 @@ export default function StatusDropdown({
   applicationId, 
   onStatusUpdate 
 }: StatusDropdownProps) {
-    const supabase = createClient();
-  const handleStatusChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newStatus = event.target.value as ApplicationStatus;
-    
+  const supabase = createClient();
+
+  const handleStatusChange = async (newStatus: ApplicationStatus) => {
     try {
       const { error } = await supabase
         .from('applications')
@@ -34,22 +40,20 @@ export default function StatusDropdown({
   };
 
   return (
-    <select
+    <Select
       value={currentStatus}
-      onChange={handleStatusChange}
-      className="block w-full px-3 py-2 bg-gray-700 text-white border border-gray-600 
-      rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 
-      hover:border-gray-500 cursor-pointer"
+      onValueChange={handleStatusChange}
     >
-      {Object.entries(APPLICATION_STATUS).map(([value, label]) => (
-        <option 
-          key={value} 
-          value={value}
-          className="bg-gray-700 text-white hover:bg-gray-600"
-        >
-          {label}
-        </option>
-      ))}
-    </select>
+      <SelectTrigger className="w-[200px]">
+        <SelectValue placeholder="Select status" />
+      </SelectTrigger>
+      <SelectContent>
+        {Object.entries(APPLICATION_STATUS).map(([key, value]) => (
+          <SelectItem key={key} value={key}>
+            {value}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }

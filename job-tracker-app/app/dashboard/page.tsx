@@ -1,7 +1,7 @@
 'use client';
 
 import Logout from "@/components/logout";
-import JobList from "@/components/data";
+import JobList from "@/components/jobList";
 import AddJobForm from "@/components/AddJobForm";
 import { ThemeToggle } from "@/components/ui/themeToggler";
 import { useState, useCallback, useEffect } from "react";
