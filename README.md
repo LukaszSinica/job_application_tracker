@@ -27,9 +27,12 @@ A modern web application to track your job applications built with Next.js, Type
 ```bash
 git clone <repository-url>
 cd job_application_tracker
+```
 
 ### 2. Install dependencies
+```
 npm install
+```
 
 ### 3. Create a Supabase project
 Create a Supabase project at https://app.supabase.com/projects/new.
@@ -40,7 +43,9 @@ NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 
 ### 5. Start the development server
+```
 npm run dev 
+```
 
 The application will be available at http://localhost:3000
 
