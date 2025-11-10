@@ -7,6 +7,8 @@ export async function getApplications() {
     const { data } = await supabase
         .from('applications')
         .select()
+        .order('date_applied', { ascending: false })
+        
 
     
     console.log(data)

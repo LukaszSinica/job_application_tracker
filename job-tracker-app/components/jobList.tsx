@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { MoreVertical, Trash2 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import StatusDropdown from "@/components/ui/StatusDropdown";
+import { deleteApplication } from '@/utils/deleteApplication';
 
 interface JobListProps {
     refreshTrigger: number;
@@ -42,6 +43,8 @@ export default function JobList({ refreshTrigger }: JobListProps) {
 
     const handleDelete = (jobId: string) => {
         setJobs(jobs.filter(job => job.id !== jobId));
+        deleteApplication(jobId);
+
     };
 
     if (loading) {
