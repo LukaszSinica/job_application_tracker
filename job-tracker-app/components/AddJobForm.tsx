@@ -20,7 +20,7 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
     }>({
         company: '',
         position: '',
-        status: APPLICATION_STATUS.SENT,
+        status: 'SENT' as ApplicationStatus,
         notes: '',
     });
 
@@ -33,7 +33,7 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
         } = await supabase.auth.getUser();
 
         if (!user) throw new Error('No user found');
-
+        console.log(formData);
         const { error } = await supabase.from('applications').insert({
             ...formData,
             user_id: user.id,
@@ -46,7 +46,7 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
         setFormData({
             company: '',
             position: '',
-            status: APPLICATION_STATUS.SENT,
+            status: 'SENT' as ApplicationStatus,
             notes: '',
         });
         
@@ -100,21 +100,21 @@ export default function AddJobForm({ refreshJobs }: AddJobFormProps) {
         </div>
 
         <div>
-        <label htmlFor="status" className="block text-sm font-medium">
+            <label htmlFor="status" className="block text-sm font-medium">
                 Status
-                </label>
-                <select
+            </label>
+            <select
                 id="status"
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value as ApplicationStatus })}
                 className="mt-1 p-2 block w-full rounded-md border border-input bg-background text-foreground focus:border-blue-500 focus:ring-blue-500"
                 >
-                {Object.values(APPLICATION_STATUS).map((status) => (
-                    <option key={status} value={status}>
-                    {status}
+                {Object.entries(APPLICATION_STATUS).map(([key, value]) => (
+                    <option key={key} value={key}>
+                    {value}
                     </option>
                 ))}
-                </select>
+            </select>
       </div>
 
         <div>
