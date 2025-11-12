@@ -80,6 +80,9 @@ export default function JobList({ refreshTrigger }: JobListProps) {
                             <TableCell className="whitespace-nowrap">
                                 {new Date(job.date_applied).toLocaleDateString()}
                             </TableCell>
+                            <TableCell className="whitespace-nowrap">
+                                {new Date(job.last_update).toLocaleDateString()}
+                            </TableCell>
                             <TableCell>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
