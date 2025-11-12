@@ -37,6 +37,16 @@ npm install
 ### 3. Create a Supabase project
 Create a Supabase project at https://app.supabase.com/projects/new.
 
+In Authentication -> URL Configuration make sure to add URL like:   
+```
+https://localhost:3000/auth/callback 
+```  
+or   
+```
+https://yourdomain/auth/callback 
+```  
+for magic link to redirect correctly.
+
 ### 4. Configure environment variables
 Create a .env.local file in the root directory of the project and add the following variables:
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
