@@ -60,6 +60,7 @@ export default function JobList({ refreshTrigger }: JobListProps) {
                         <TableHead className="w-[200px]">Position</TableHead>
                         <TableHead className="w-[180px]">Status</TableHead>
                         <TableHead className="w-[120px]">Date Applied</TableHead>
+                        <TableHead className="w-[120px]">Last Updated</TableHead>
                         <TableHead className="w-[80px]">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
